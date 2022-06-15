@@ -2,10 +2,12 @@ import React, { useEffect } from 'react'
 import Allows from '../../components/Allows'
 import BannerHome from '../../components/BannerHome'
 import ComingSoon from '../../components/ComingSoon'
+import Exchanges from '../../components/Exhanges'
 import NFTSection from '../../components/NFTSection'
 import Participate from '../../components/Participate'
 import Popup from '../../components/Popup'
 import Seo from '../../components/Seo'
+import Tutorials from '../../components/Tutorials'
 import UtilitySolutions from '../../components/UtilitySolutions'
 import { BgGradient } from './styles'
 
@@ -33,12 +35,12 @@ export default function Home () {
         <section id='participate-in-filmcoin-section'>
           <Participate />
         </section>
-        {/* <section id='exchanges-section'>
+        <section id='exchanges-section'>
           <Exchanges />
         </section>
         <section id='tutorials'>
           <Tutorials />
-        </section> */}
+        </section>
       </BgGradient>
 
     </div>
