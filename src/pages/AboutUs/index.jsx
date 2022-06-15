@@ -10,6 +10,11 @@ import {
 import VideoSection from '@/components/VideoSection'
 import GlobalSolution from '../../components/GlobalSolution'
 import RoadMap from '../../components/RoadMap'
+import Disrupting from '../../components/Disrupting'
+import Launchpad from '../../components/Launchpad'
+import Generation from '../../components/Generation'
+import Participate from '../../components/Participate'
+import Exchanges from '../../components/Exhanges'
 export default function AboutUs () {
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -28,11 +33,11 @@ export default function AboutUs () {
           <section id='expectation-section'>
             <RoadMap />
           </section>
-          {/* <section id='what-are-section'>
-            <Goals />
-          </section> */}
+          <section id='what-are-section'>
+            <Disrupting />
+          </section>
         </BgGradientFirst>
-        {/* <BgGradientSecond>
+        <BgGradientSecond>
           <section id='launchpad-section'>
             <Launchpad />
           </section>
@@ -42,12 +47,12 @@ export default function AboutUs () {
         </BgGradientSecond>
         <BgGradientLast>
           <section id='participate-section'>
-            <BuyFC />
+            <Participate />
           </section>
           <section id='exchanges-section'>
             <Exchanges />
           </section>
-        </BgGradientLast>s */}
+        </BgGradientLast>s
       </Container>
     </>
   )
