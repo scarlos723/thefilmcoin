@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import bgImg from '@/images/bannerHome/bgBannerHome.png'
+import bgImg from '@/images/home/bgBannerHome.png'
 import { ResponsiveTo } from '@/hooks/useResponsive'
 export const Section = styled.section`
   display: grid;

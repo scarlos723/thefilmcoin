@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react'
+import Allows from '../../components/Allows'
 import BannerHome from '../../components/BannerHome'
+import ComingSoon from '../../components/ComingSoon'
+import NFTSection from '../../components/NFTSection'
+import Participate from '../../components/Participate'
 import Popup from '../../components/Popup'
 import Seo from '../../components/Seo'
+import UtilitySolutions from '../../components/UtilitySolutions'
+import { BgGradient } from './styles'
 
 export default function Home () {
   useEffect(() => {
@@ -13,11 +19,11 @@ export default function Home () {
       <Popup />
       <BannerHome />
       <section id='NFT-section'>
-        {/* <NFTSection />
-        <CommingSoonFc /> */}
+        <NFTSection />
+        <ComingSoon />
       </section>
 
-      {/* <BgGradient>
+      <BgGradient>
         <section id='allows-everyone'>
           <Allows />
         </section>
@@ -25,15 +31,15 @@ export default function Home () {
           <UtilitySolutions />
         </section>
         <section id='participate-in-filmcoin-section'>
-          <BuyFC />
+          <Participate />
         </section>
-        <section id='exchanges-section'>
+        {/* <section id='exchanges-section'>
           <Exchanges />
         </section>
         <section id='tutorials'>
           <Tutorials />
-        </section>
-      </BgGradient> */}
+        </section> */}
+      </BgGradient>
 
     </div>
   )
