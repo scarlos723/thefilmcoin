@@ -7,6 +7,9 @@ import {
   BgGradientSecond,
   Container
 } from './styles'
+import VideoSection from '@/components/VideoSection'
+import GlobalSolution from '../../components/GlobalSolution'
+import RoadMap from '../../components/RoadMap'
 export default function AboutUs () {
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -17,7 +20,7 @@ export default function AboutUs () {
       <Container>
         <Seo title='About Us' />
         <BannerAboutUs />
-        {/* <VideoSection />
+        <VideoSection />
         <BgGradientFirst>
           <section id='filmcoin-section'>
             <GlobalSolution />
@@ -25,11 +28,11 @@ export default function AboutUs () {
           <section id='expectation-section'>
             <RoadMap />
           </section>
-          <section id='what-are-section'>
+          {/* <section id='what-are-section'>
             <Goals />
-          </section>
+          </section> */}
         </BgGradientFirst>
-        <BgGradientSecond>
+        {/* <BgGradientSecond>
           <section id='launchpad-section'>
             <Launchpad />
           </section>
@@ -44,7 +47,7 @@ export default function AboutUs () {
           <section id='exchanges-section'>
             <Exchanges />
           </section>
-        </BgGradientLast> */}
+        </BgGradientLast>s */}
       </Container>
     </>
   )
