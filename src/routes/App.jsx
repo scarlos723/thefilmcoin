@@ -5,6 +5,7 @@ import FcTemplate from '@/containers/FcTemplate'
 // styles
 import '@/styles/App.css'
 import AboutUs from '../pages/AboutUs'
+import Tokenomics from '../pages/Tokenomics'
 
 function App () {
   return (
@@ -14,6 +15,7 @@ function App () {
         <Route path='/' element={<FcTemplate />}>
           <Route index element={<Home />} />
           <Route path='aboutus' element={<AboutUs />} />
+          <Route path='tokenomics' element={<Tokenomics />} />
         </Route>
 
       </Routes>

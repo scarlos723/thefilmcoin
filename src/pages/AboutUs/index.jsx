@@ -8,13 +8,13 @@ import {
   Container
 } from './styles'
 import VideoSection from '@/components/VideoSection'
-import GlobalSolution from '../../components/GlobalSolution'
-import RoadMap from '../../components/RoadMap'
-import Disrupting from '../../components/Disrupting'
-import Launchpad from '../../components/Launchpad'
-import Generation from '../../components/Generation'
-import Participate from '../../components/Participate'
-import Exchanges from '../../components/Exhanges'
+import GlobalSolution from '@/components/GlobalSolution'
+import RoadMap from '@/components/RoadMap'
+import Disrupting from '@/components/Disrupting'
+import Launchpad from '@/components/Launchpad'
+import Generation from '@/components/Generation'
+import Participate from '@/components/Participate'
+import Exchanges from '@/components/Exchanges'
 export default function AboutUs () {
   useEffect(() => {
     window.scrollTo(0, 0)
