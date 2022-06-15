@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import FcTemplate from '@/containers/FcTemplate'
 // styles
 import '@/styles/App.css'
+import AboutUs from '../pages/AboutUs'
 
 function App () {
   return (
@@ -12,6 +13,7 @@ function App () {
       <Routes>
         <Route path='/' element={<FcTemplate />}>
           <Route index element={<Home />} />
+          <Route path='aboutus' element={<AboutUs />} />
         </Route>
 
       </Routes>
