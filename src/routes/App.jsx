@@ -9,6 +9,8 @@ import Tokenomics from '../pages/Tokenomics'
 import Benefits from '../pages/Benefits'
 import Productions from '../pages/Productions'
 import MeetOurTeam from '../pages/MeetOurTeam'
+import Ambassadors from '../pages/Ambassadors'
+import Contact from '../pages/Contact'
 
 function App () {
   return (
@@ -22,6 +24,8 @@ function App () {
           <Route path='benefits' element={<Benefits />} />
           <Route path='productions' element={<Productions />} />
           <Route path='ourteam' element={<MeetOurTeam />} />
+          <Route path='ambassadors' element={<Ambassadors />} />
+          <Route path='contact' element={<Contact />} />
         </Route>
 
       </Routes>
