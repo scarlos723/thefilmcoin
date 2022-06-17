@@ -7,7 +7,7 @@ const Seo = ({
   ...props
 }) => {
   const { pathname } = useLocation()
-  const url = 'https://www.thefilmcoin.io' // process.env.REACT_APP_URL
+  const url = import.meta.env.REACT_APP_URL
 
   const seo = {
     title,
