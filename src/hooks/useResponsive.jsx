@@ -7,6 +7,7 @@ import { css } from 'styled-components'
  */
 export const ResponsiveTo = (display = 'md') => {
   const range = {
+    xs: '420px',
     // Width values from tailwind responsive
     md: '768px',
     lg: '1024px',
