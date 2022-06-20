@@ -1,6 +1,7 @@
 import React from 'react'
 import Stepper from '@/components/Stepper'
 import BannerPayments from '@/components/BannerPayments'
+import PaymentCheckoutForm from '@/components/PaymentCheckoutForm'
 
 function Payment2() {
   React.useEffect(() => {
@@ -17,6 +18,7 @@ function Payment2() {
             ]}
             currentStep={0}
           />
+        <PaymentCheckoutForm />
       </BannerPayments>
     </>
   )
