@@ -12,6 +12,6 @@ const getPaymentCheckoutSchema = ({ currency }) => yup.object().shape({
       (value, context) => Number.parseInt(value) >= currency.minTokens
     )
     .required('Required')
-});
+})
 
-export default getPaymentCheckoutSchema;
+export default getPaymentCheckoutSchema

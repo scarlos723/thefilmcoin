@@ -7,7 +7,7 @@ const Seo = ({
   ...props
 }) => {
   const { pathname } = useLocation()
-  const url = import.meta.env.REACT_APP_URL
+  const url = import.meta.env.VITE_URL
 
   const seo = {
     title,

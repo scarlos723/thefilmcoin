@@ -13,6 +13,6 @@ const paymentCurrencyOptions = [
     min: 80,
     minTokens: 1143
   }
-];
+]
 
-export default paymentCurrencyOptions;
+export default paymentCurrencyOptions
