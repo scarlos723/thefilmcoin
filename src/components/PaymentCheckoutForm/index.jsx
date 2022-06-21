@@ -9,8 +9,9 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import getPaymentCheckoutSchema from './schema'
 import options from './currencyOptions'
+import StripeButton from '../StripeButton'
 
-export default function PaymentCheckoutForm() {
+export default function PaymentCheckoutForm () {
   const location = useLocation()
   const history = useNavigate()
   const [currency, setCurrency] = useState(options[0])
@@ -67,21 +68,26 @@ export default function PaymentCheckoutForm() {
         </Form>
         <ButtonsContainer>
           {total >= currency.min && (
-            <form action='https://www.coinpayments.net/index.php' method='post' target='_blank' style={{ width: '100%' }}>
-              <input type='hidden' name='cmd' value='_pay' />
-              <input type='hidden' name='reset' value='1' />
-              <input type='hidden' name='merchant' value={import.meta.env.VITE_COINPAYMENTS_MERCHANT_ID || ''} />
-              <input type='hidden' name='item_name' value='FilmCoin' />
-              <input type='hidden' name='invoice' value={transactionToken || ''} />
-              <input type='hidden' name='currency' value={currency.name} />
-              <input type='hidden' name='amountf' value={currency.value} />
-              <input type='hidden' name='quantity' value={watchTokenAmount} />
-              <input type='hidden' name='allow_quantity' value='0' />
-              <input type='hidden' name='want_shipping' value='0' />
-              <input type='hidden' name='success_url' value='https://thefilmcoin.io/#/success' />
-              <input type='hidden' name='allow_extra' value='0' />
-              <input type='image' src='https://www.coinpayments.net/images/pub/buynow-wide-yellow.png' alt='Comprar ahora con CoinPayments.net' style={{ display: 'block', width: '100%' }} />
-            </form>
+            <>
+              <div>
+                <StripeButton amount={total} currency={currency.name}/>
+              </div>
+              <form action='https://www.coinpayments.net/index.php' method='post' target='_blank' style={{ width: '100%' }}>
+                <input type='hidden' name='cmd' value='_pay' />
+                <input type='hidden' name='reset' value='1' />
+                <input type='hidden' name='merchant' value={import.meta.env.VITE_COINPAYMENTS_MERCHANT_ID || ''} />
+                <input type='hidden' name='item_name' value='FilmCoin' />
+                <input type='hidden' name='invoice' value={transactionToken || ''} />
+                <input type='hidden' name='currency' value={currency.name} />
+                <input type='hidden' name='amountf' value={currency.value} />
+                <input type='hidden' name='quantity' value={watchTokenAmount} />
+                <input type='hidden' name='allow_quantity' value='0' />
+                <input type='hidden' name='want_shipping' value='0' />
+                <input type='hidden' name='success_url' value='https://thefilmcoin.io/#/success' />
+                <input type='hidden' name='allow_extra' value='0' />
+                <input type='image' src='https://www.coinpayments.net/images/pub/buynow-wide-yellow.png' alt='Comprar ahora con CoinPayments.net' style={{ display: 'block', width: '100%' }} />
+              </form>
+            </>
           )}
         </ButtonsContainer>
       </Container>
