@@ -6,7 +6,7 @@ import {
   Description
 } from './styles'
 
-export default function Stepper({
+function Stepper({
   labels,
   currentStep = 0,
   currentStepStatus = stepStatusOptions.current
@@ -48,3 +48,7 @@ export default function Stepper({
   )
 }
 
+export {
+  Stepper as default,
+  stepStatusOptions
+}

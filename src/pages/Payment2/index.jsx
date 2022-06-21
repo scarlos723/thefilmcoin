@@ -16,7 +16,7 @@ function Payment2() {
               'Payment information',
               'Confirm Payment'
             ]}
-            currentStep={0}
+            currentStep={1}
           />
         <PaymentCheckoutForm />
       </BannerPayments>
