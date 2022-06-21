@@ -10,7 +10,7 @@ const CheckoutForm = (props) => {
   const stripe = useStripe()
   const elements = useElements() // Manage the elements on return (CardElement)
   const baseURLApi = import.meta.env.VITE_BACKEND_BASE_URL
-  console.log('The URL es and key ', baseURLApi, import.meta.env.VITE_PUBLIC_KEY_STRIPE)
+
   async function handleSubmit (e) {
     e.preventDefault()
     const { error, paymentMethod } = await stripe.createPaymentMethod({
