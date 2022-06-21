@@ -4,13 +4,13 @@ import { loadStripe } from '@stripe/stripe-js'
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import { ButtonAction, BuyButton, Form, Slide } from './styles'
-const stripePromise = loadStripe(import.meta.env.REACT_APP_PUBLIC_KEY_STRIPE)
+const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
 
 const CheckoutForm = (props) => {
   const stripe = useStripe()
   const elements = useElements() // Manage the elements on return (CardElement)
-  const baseURLApi = import.meta.env.REACT_APP_BACKEND_BASE_URL
-  console.log('The URL es', baseURLApi)
+  const baseURLApi = import.meta.env.VITE_BACKEND_BASE_URL
+  console.log('The URL es and key ', baseURLApi, import.meta.env.VITE_PUBLIC_KEY_STRIPE)
   async function handleSubmit (e) {
     e.preventDefault()
     const { error, paymentMethod } = await stripe.createPaymentMethod({
