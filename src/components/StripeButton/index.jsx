@@ -23,7 +23,7 @@ const CheckoutForm = (props) => {
 
       const response = await axios.post(`${baseURLApi}/api/StripeTransaction`,
         {
-          id,
+          orderID: id,
           amount: props.amount / 0.01, // Amount in cents (10000 cents = 100 USD)
           currency: props.currency,
           token: props.token
