@@ -56,9 +56,7 @@ function PaymentContactInfoForm () {
         refCode: !refCode ? 'null' : refCode
       }
       const response = await sendContactInfo(allData)
-      if (response) {
-        console.log('This is response:', response)
-      }
+
       setResponse(response)
 
       if (allData.refCode) {
