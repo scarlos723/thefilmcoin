@@ -23,9 +23,10 @@ const CheckoutForm = (props) => {
 
       const response = await axios.post(`${baseURLApi}/api/checkout`,
         {
-          id,
+          orderID: id,
           amount: props.amount / 0.01, // Amount in cents (10000 cents = 100 USD)
-          currency: props.currency
+          currency: props.currency,
+          token: props.token
         })
       if (response) {
         console.log('respuenta en checkout', response)

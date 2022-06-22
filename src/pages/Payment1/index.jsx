@@ -4,7 +4,7 @@ import BannerPayments from '@/components/BannerPayments'
 import PaymentOptions from '@/components/PaymentOptions'
 import PaymentContactInfoForm from '@/components/PaymentContactInfoForm'
 
-function Payment1() {
+function Payment1 () {
   React.useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -13,12 +13,12 @@ function Payment1() {
     <>
       <BannerPayments>
         <Stepper
-            labels={[
-              'Payment information',
-              'Confirm Payment'
-            ]}
-            currentStep={0}
-          />
+          labels={[
+            'Payment information',
+            'Confirm Payment'
+          ]}
+          currentStep={0}
+        />
       </BannerPayments>
       <PaymentOptions />
       <PaymentContactInfoForm />

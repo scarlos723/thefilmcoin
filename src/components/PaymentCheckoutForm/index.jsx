@@ -70,7 +70,7 @@ export default function PaymentCheckoutForm () {
           {total >= currency.min && (
             <>
               <div>
-                <StripeButton amount={total} currency={currency.name}/>
+                <StripeButton amount={total} currency={currency.name} token={transactionToken}/>
               </div>
               <form action='https://www.coinpayments.net/index.php' method='post' target='_blank' style={{ width: '100%' }}>
                 <input type='hidden' name='cmd' value='_pay' />
