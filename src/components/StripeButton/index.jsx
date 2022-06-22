@@ -33,7 +33,6 @@ const CheckoutForm = (props) => {
           token: props.token
         })
       if (response) {
-        console.log('Stripe response', response)
         setLoading(false)
         if (response.data.message === 'Payment successfull') {
           navigate('/success')
