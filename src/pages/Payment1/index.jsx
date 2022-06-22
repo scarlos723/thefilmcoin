@@ -24,6 +24,7 @@ function Payment1 () {
       <PaymentContactInfoForm />
     </>
   )
+  // esta es la rama nueva
 }
 
 export default Payment1
