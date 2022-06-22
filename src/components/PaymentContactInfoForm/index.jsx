@@ -19,7 +19,7 @@ import PaymentPopup from '@/components/PaymentPopup'
 import { sendContactInfo } from '@/services/Api'
 import paymentContactInfoFormSchema from './schema'
 
-function PaymentContactInfoForm() {
+function PaymentContactInfoForm () {
   const navigate = useNavigate()
   const location = useLocation()
   const [cookies, setCookie] = useCookies(['refCode'])
@@ -56,6 +56,9 @@ function PaymentContactInfoForm() {
         refCode: !refCode ? 'null' : refCode
       }
       const response = await sendContactInfo(allData)
+      if (response) {
+        console.log('This is response:', response)
+      }
       setResponse(response)
 
       if (allData.refCode) {
