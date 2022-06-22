@@ -1,4 +1,5 @@
 import React from 'react'
+import Seo from '@/components/Seo'
 import Stepper from '@/components/Stepper'
 import BannerPayments from '@/components/BannerPayments'
 import PaymentOptions from '@/components/PaymentOptions'
@@ -11,6 +12,7 @@ function Payment1 () {
 
   return (
     <>
+      <Seo title='Payment Information' />
       <BannerPayments>
         <Stepper
           labels={[
