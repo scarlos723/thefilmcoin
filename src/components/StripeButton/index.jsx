@@ -58,7 +58,7 @@ export default function StripeButton (props) {
       <Slide show={showSlide}>
         <section>
           <Elements stripe={stripePromise}>
-            <CheckoutForm amount={props.amount} />
+            <CheckoutForm amount={props.amount} currency={props.currency} token={props.token}/>
           </Elements>
         </section>
       </Slide>
