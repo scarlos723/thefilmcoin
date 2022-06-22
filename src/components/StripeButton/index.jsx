@@ -3,14 +3,17 @@ import React from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
-import { ButtonAction, BuyButton, Form, Slide } from './styles'
+import { ButtonAction, BuyButton, Form, LoadIcon, Slide } from './styles'
+import { useNavigate } from 'react-router-dom'
 const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
 
 const CheckoutForm = (props) => {
+  const navigate = useNavigate()
   const stripe = useStripe()
   const elements = useElements() // Manage the elements on return (CardElement)
   const baseURLApi = import.meta.env.VITE_API_BASE_URL
-
+  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = React.useState(false)
   async function handleSubmit (e) {
     e.preventDefault()
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -19,6 +22,7 @@ const CheckoutForm = (props) => {
     })
     if (!error) {
       // console.log(paymentMethod)
+      setLoading(true)
       const { id } = paymentMethod // Extract id transaction
 
       const response = await axios.post(`${baseURLApi}/api/StripeTransaction`,
@@ -29,7 +33,12 @@ const CheckoutForm = (props) => {
           token: props.token
         })
       if (response) {
-        console.log('Stripe response', response)
+        setLoading(false)
+        if (response.data.message === 'Payment successfull') {
+          navigate('/success')
+        } else {
+          navigate('/error')
+        }
       }
     } else {
       console.log('Error:', error)
@@ -38,7 +47,16 @@ const CheckoutForm = (props) => {
   return (
     <Form onSubmit={handleSubmit}>
       <CardElement />
-      <BuyButton>Buy with Stripe</BuyButton>
+      {
+        !loading
+          ? <BuyButton>Buy with Stripe</BuyButton>
+          : <LoadIcon>
+            <div />
+            <div />
+            <div />
+          </LoadIcon>
+      }
+
     </Form>
   )
 }
