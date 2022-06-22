@@ -9,7 +9,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
 const CheckoutForm = (props) => {
   const stripe = useStripe()
   const elements = useElements() // Manage the elements on return (CardElement)
-  const baseURLApi = import.meta.env.VITE_BACKEND_BASE_URL
+  const baseURLApi = import.meta.env.VITE_API_BASE_URL
 
   async function handleSubmit (e) {
     e.preventDefault()
