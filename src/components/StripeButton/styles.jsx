@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { TranslateAnimation } from '../../styles/animations'
 
 export const ButtonAction = styled.div`
  //background-color: #9966FF;
@@ -60,4 +61,32 @@ export const BuyButton = styled.button`
   border-radius: 4px;
   margin: 0 auto;
   margin-top: 12px;
+`
+
+export const LoadIcon = styled.h1`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  gap: 8px;
+  color: #9966FF;
+  div{
+    background-color: #9966FF;
+    width: 12px;
+    height: 12px;
+    position: relative;
+  }
+  div:nth-child(1){
+    transform: translateY(100%);
+    ${TranslateAnimation({ time: '1s' })}
+  }
+  div:nth-child(2){
+    transform: translateY(50%);
+    ${TranslateAnimation({ time: '1s' })}
+    animation-delay: 0.2s;
+  }
+  div:nth-child(3){
+    transform: translateY(50%);
+    ${TranslateAnimation({ time: '1s' })}
+    animation-delay: 0.5s;
+  }
 `

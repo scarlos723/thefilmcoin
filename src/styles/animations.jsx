@@ -30,6 +30,17 @@ const fadeInKeyframes = keyframes`
     opacity: 1;
   }
 `
+const translateKeyFrames = keyframes`
+  0%{
+    transform:translateY(0%)
+  }
+  50%{
+    transform:translateY(100%)
+  }100%{
+    transform:translateY(0%)
+  }
+`
+
 const getBubbleKeyFrame = () => { // code for create path of bubbles
   const sec = (2 * Math.PI) / 8
   const parts = (100 / 9)
@@ -59,4 +70,7 @@ export const BubbleAnimation = ({ time = '5s', type = 'linear' } = {}) => css`
 `
 export const vibrateAnimation = ({ time = '10s', type = 'ease' } = {}) => css`
 animation: ${time} ${vibrateKeyframe()} ${type} infinite ; 
+`
+export const TranslateAnimation = ({ time = '5s', type = 'ease' } = {}) => css`
+animation: ${time} ${translateKeyFrames} ${type} infinite ; 
 `
