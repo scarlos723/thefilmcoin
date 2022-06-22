@@ -4,9 +4,11 @@ import { loadStripe } from '@stripe/stripe-js'
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import { ButtonAction, BuyButton, Form, LoadIcon, Slide } from './styles'
+import { useNavigate } from 'react-router-dom'
 const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
 
 const CheckoutForm = (props) => {
+  const navigate = useNavigate()
   const stripe = useStripe()
   const elements = useElements() // Manage the elements on return (CardElement)
   const baseURLApi = import.meta.env.VITE_API_BASE_URL
@@ -33,6 +35,11 @@ const CheckoutForm = (props) => {
       if (response) {
         console.log('Stripe response', response)
         setLoading(false)
+        if (response.data.message === '"Payment successfull"') {
+          navigate('/success')
+        } else {
+          navigate('/error')
+        }
       }
     } else {
       console.log('Error:', error)
