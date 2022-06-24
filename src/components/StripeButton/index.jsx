@@ -41,6 +41,8 @@ const CheckoutForm = (props) => {
         }
       }
     } else {
+      setLoading(false)
+      navigate('/error')
       console.log('Error:', error)
     }
   }
