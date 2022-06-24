@@ -5,7 +5,8 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import axios from 'axios'
 import { ButtonAction, BuyButton, Form, LoadIcon, Slide, TestButton } from './styles'
 import { useNavigate } from 'react-router-dom'
-// const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
+const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
+const stripeTestPromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE_TEST)
 
 const CheckoutForm = (props) => {
   const navigate = useNavigate()
@@ -78,8 +79,6 @@ const CheckoutForm = (props) => {
 export default function StripeButton (props) {
   const [showSlide, setShowSlide] = React.useState(false)
   const [testMode, setTestMode] = React.useState(false)
-  const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
-  const stripeTestPromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE_TEST)
   return (
     <div>
       <ButtonAction onClick={() => setShowSlide(!showSlide)}>
@@ -94,9 +93,11 @@ export default function StripeButton (props) {
         <section>
           {testMode
             ? <Elements stripe={stripeTestPromise}>
+              <div style={{ background: 'white', color: 'black' }}> test mode</div>
               <CheckoutForm testMode={testMode} amount={props.amount} currency={props.currency} token={props.token}/>
             </Elements>
             : <Elements stripe={stripePromise}>
+
               <CheckoutForm testMode={testMode} amount={props.amount} currency={props.currency} token={props.token}/>
             </Elements>
           }
