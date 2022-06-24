@@ -3,7 +3,7 @@ import React from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
-import { ButtonAction, BuyButton, Form, LoadIcon, Slide } from './styles'
+import { ButtonAction, BuyButton, Form, LoadIcon, Slide, TestButton } from './styles'
 import { useNavigate } from 'react-router-dom'
 const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
 
@@ -12,6 +12,7 @@ const CheckoutForm = (props) => {
   const stripe = useStripe()
   const elements = useElements() // Manage the elements on return (CardElement)
   const baseURLApi = import.meta.env.VITE_API_BASE_URL
+  const [testMode, setTestMode] = React.useState(false)
   // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = React.useState(false)
   async function handleSubmit (e) {
@@ -25,7 +26,8 @@ const CheckoutForm = (props) => {
       setLoading(true)
       const { id } = paymentMethod // Extract id transaction
       try {
-        const response = await axios.post(`${baseURLApi}/api/StripeTransaction`,
+        const apiUrl = testMode ? '/api/testStripe' : '/api/StripeTransaction'
+        const response = await axios.post(`${baseURLApi}${apiUrl}`,
           {
             orderID: id,
             amount: props.amount / 0.01, // Amount in cents (10000 cents = 100 USD)
@@ -53,24 +55,33 @@ const CheckoutForm = (props) => {
     }
   }
   return (
-    <Form onSubmit={handleSubmit}>
-      <CardElement />
-      {
-        !loading
-          ? <BuyButton>Buy with Stripe</BuyButton>
-          : <LoadIcon>
-            <div />
-            <div />
-            <div />
-          </LoadIcon>
-      }
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <CardElement />
+        {
+          !loading
+            ? <BuyButton>Buy with Stripe</BuyButton>
+            : <LoadIcon>
+              <div />
+              <div />
+              <div />
+            </LoadIcon>
+        }
 
-    </Form>
+      </Form>
+      <TestButton>
+        <button onClick={() => setTestMode(!testMode)}>
+          Test {testMode ? 'on' : 'off'}
+        </button>
+      </TestButton>
+    </div>
+
   )
 }
 
 export default function StripeButton (props) {
   const [showSlide, setShowSlide] = React.useState(false)
+
   return (
     <div>
       <ButtonAction onClick={() => setShowSlide(!showSlide)}>
@@ -88,6 +99,7 @@ export default function StripeButton (props) {
           </Elements>
         </section>
       </Slide>
+
     </div>
   )
 }

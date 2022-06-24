@@ -48,7 +48,8 @@ export const Slide = styled.div`
 `
 export const Form = styled.form`
   display: grid;
-  
+  position: relative;
+  z-index:1;
 `
 export const BuyButton = styled.button`
   background-color: #2F2F58;
@@ -89,5 +90,16 @@ export const LoadIcon = styled.h1`
     transform: translateY(50%);
     ${TranslateAnimation({ time: '1s' })}
     animation-delay: 0.5s;
+  }
+`
+
+export const TestButton = styled.div`
+  position: absolute;
+  bottom: -200px;
+  right: -20px;
+  z-index: 0;
+  button{
+    color: white;
+    font-size: 10px;
   }
 `
