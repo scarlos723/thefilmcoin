@@ -1,8 +1,10 @@
-
+import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ReactGA from 'react-ga'
 import FcTemplate from '@/containers/FcTemplate'
 // styles
 import '@/styles/App.css'
+
 import Home from '@/pages/Home'
 import AboutUs from '@/pages/AboutUs'
 import Tokenomics from '@/pages/Tokenomics'
@@ -16,7 +18,13 @@ import Payment2 from '@/pages/Payment2'
 import Error from '@/pages/PaymentOutcomes/Error'
 import Success from '@/pages/PaymentOutcomes/Success'
 
+ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID || '')
+
 function App () {
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  })
+
   return (
     <BrowserRouter>
       <Routes>
