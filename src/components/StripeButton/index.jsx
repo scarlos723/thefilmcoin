@@ -92,9 +92,14 @@ export default function StripeButton (props) {
       </ButtonAction>
       <Slide show={showSlide}>
         <section>
-          <Elements stripe={testMode ? stripeTestPromise : stripePromise}>
-            <CheckoutForm testMode={testMode} amount={props.amount} currency={props.currency} token={props.token}/>
-          </Elements>
+          {testMode
+            ? <Elements stripe={stripeTestPromise}>
+              <CheckoutForm testMode={testMode} amount={props.amount} currency={props.currency} token={props.token}/>
+            </Elements>
+            : <Elements stripe={stripePromise}>
+              <CheckoutForm testMode={testMode} amount={props.amount} currency={props.currency} token={props.token}/>
+            </Elements>
+          }
         </section>
       </Slide>
       <TestButton>
