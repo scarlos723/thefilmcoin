@@ -92,14 +92,3 @@ export const LoadIcon = styled.h1`
     animation-delay: 0.5s;
   }
 `
-
-export const TestButton = styled.div`
-  position: absolute;
-  bottom: -200px;
-  right: -20px;
-  z-index: 0;
-  button{
-    color: white;
-    font-size: 10px;
-  }
-`
