@@ -25,7 +25,7 @@ const CheckoutForm = (props) => {
       setLoading(true)
       const { id } = paymentMethod // Extract id transaction
 
-      const response = await axios.post(`${baseURLApi}/api/testStripe`,
+      const response = await axios.post(`${baseURLApi}/api/StripeTransaction`,
         {
           orderID: id,
           amount: props.amount / 0.01, // Amount in cents (10000 cents = 100 USD)
