@@ -5,14 +5,14 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import axios from 'axios'
 import { ButtonAction, BuyButton, Form, LoadIcon, Slide, TestButton } from './styles'
 import { useNavigate } from 'react-router-dom'
-const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
+// const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
 
 const CheckoutForm = (props) => {
   const navigate = useNavigate()
   const stripe = useStripe()
   const elements = useElements() // Manage the elements on return (CardElement)
   const baseURLApi = import.meta.env.VITE_API_BASE_URL
-  const [testMode, setTestMode] = React.useState(false)
+
   // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = React.useState(false)
   async function handleSubmit (e) {
@@ -26,7 +26,7 @@ const CheckoutForm = (props) => {
       setLoading(true)
       const { id } = paymentMethod // Extract id transaction
       try {
-        const apiUrl = testMode ? '/api/testStripe' : '/api/StripeTransaction'
+        const apiUrl = props.testMode ? '/api/testStripe' : '/api/StripeTransaction'
         const response = await axios.post(`${baseURLApi}${apiUrl}`,
           {
             orderID: id,
@@ -69,11 +69,7 @@ const CheckoutForm = (props) => {
         }
 
       </Form>
-      <TestButton>
-        <button onClick={() => setTestMode(!testMode)}>
-          Test {testMode ? 'on' : 'off'}
-        </button>
-      </TestButton>
+
     </div>
 
   )
@@ -81,7 +77,9 @@ const CheckoutForm = (props) => {
 
 export default function StripeButton (props) {
   const [showSlide, setShowSlide] = React.useState(false)
-
+  const [testMode, setTestMode] = React.useState(false)
+  const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
+  const stripeTestPromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE_TEST)
   return (
     <div>
       <ButtonAction onClick={() => setShowSlide(!showSlide)}>
@@ -94,12 +92,16 @@ export default function StripeButton (props) {
       </ButtonAction>
       <Slide show={showSlide}>
         <section>
-          <Elements stripe={stripePromise}>
-            <CheckoutForm amount={props.amount} currency={props.currency} token={props.token}/>
+          <Elements stripe={testMode ? stripeTestPromise : stripePromise}>
+            <CheckoutForm testMode={testMode} amount={props.amount} currency={props.currency} token={props.token}/>
           </Elements>
         </section>
       </Slide>
-
+      <TestButton>
+        <button onClick={() => setTestMode(!testMode)}>
+          Test {testMode ? 'on' : 'off'}
+        </button>
+      </TestButton>
     </div>
   )
 }
