@@ -16,7 +16,7 @@ import Payment2 from '@/pages/Payment2'
 import Error from '@/pages/PaymentOutcomes/Error'
 import Success from '@/pages/PaymentOutcomes/Success'
 
-function App() {
+function App () {
   return (
     <BrowserRouter>
       <Routes>
