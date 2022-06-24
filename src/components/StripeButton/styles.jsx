@@ -61,6 +61,7 @@ export const BuyButton = styled.button`
   border-radius: 4px;
   margin: 0 auto;
   margin-top: 12px;
+  cursor: pointer;
 `
 
 export const LoadIcon = styled.h1`
