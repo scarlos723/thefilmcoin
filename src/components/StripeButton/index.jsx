@@ -24,21 +24,27 @@ const CheckoutForm = (props) => {
       // console.log(paymentMethod)
       setLoading(true)
       const { id } = paymentMethod // Extract id transaction
-
-      const response = await axios.post(`${baseURLApi}/api/StripeTransaction`,
-        {
-          orderID: id,
-          amount: props.amount / 0.01, // Amount in cents (10000 cents = 100 USD)
-          currency: props.currency,
-          token: props.token
-        })
-      if (response) {
-        setLoading(false)
-        if (response.data.message === 'Payment successfull') {
-          navigate('/success')
-        } else {
-          navigate('/error')
+      try {
+        const response = await axios.post(`${baseURLApi}/api/StripeTransaction`,
+          {
+            orderID: id,
+            amount: props.amount / 0.01, // Amount in cents (10000 cents = 100 USD)
+            currency: props.currency,
+            token: props.token
+          })
+        if (response) {
+          setLoading(false)
+          if (response.data.message === 'Payment successfull') {
+            navigate('/success')
+          } else {
+            navigate('/error')
+          }
         }
+      } catch (errorcatch) {
+        setLoading(false)
+        navigate('/error')
+        console.log('Error Catch: ', errorcatch)
+        console.log('Error: ', error)
       }
     } else {
       setLoading(false)
