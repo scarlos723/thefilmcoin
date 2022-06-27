@@ -41,6 +41,7 @@ function App () {
           <Route path='payment2' element={<Payment2 />} />
           <Route path='error' element={<Error />} />
           <Route path='success' element={<Success />} />
+          <Route path='payment1Test' element={<Payment1 />} />
         </Route>
       </Routes>
     </BrowserRouter>
