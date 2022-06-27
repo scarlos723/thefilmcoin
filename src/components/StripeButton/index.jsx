@@ -5,8 +5,8 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import axios from 'axios'
 import { ButtonAction, BuyButton, Form, LoadIcon, Slide } from './styles'
 import { useNavigate } from 'react-router-dom'
-// const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
-const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE_TEST) // TEST .env
+const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE)
+// const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY_STRIPE_TEST) // TEST .env
 
 const CheckoutForm = (props) => {
   const navigate = useNavigate()
@@ -27,8 +27,8 @@ const CheckoutForm = (props) => {
       setLoading(true)
       const { id } = paymentMethod // Extract id transaction
       try {
-        const apiUrl = '/api/testStripe' // Test api
-        // const apiUrl = '/api/StripeTransaction'
+        // const apiUrl = '/api/testStripe' // Test api
+        const apiUrl = '/api/StripeTransaction'
         const response = await axios.post(`${baseURLApi}${apiUrl}`,
           {
             orderID: id,
