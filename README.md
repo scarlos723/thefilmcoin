@@ -9,5 +9,5 @@ VITE_API_BASE_URL=api base url
 VITE_GA_TRACKING_ID=Google Analytics tracking ID
 VITE_URL=domain url
 VITE_COINPAYMENTS_MERCHANT_ID=Coinpayments merchant ID
-VITE_STRIPE_PUBLIC_KEY= stripe public key 
+VITE_PUBLIC_KEY_STRIPE=stripe public key 
 ```
