@@ -24,7 +24,31 @@ export const Container = styled.div`
   color: white;
   max-width: 480px;
 `
-
+export const InfoPriceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  small{
+    font-size: 1rem;
+    font-weight: 300;
+    span{
+      color: #12D466;
+    }
+  }
+  a{
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: white;
+    span{
+      color: #12D466;
+    }
+  }
+`
 export const Form = styled.form`
   color: white;
   width: 100%;
@@ -124,7 +148,7 @@ export const Button = styled.button`
       background: rgba(0, 146, 66, 0.3);
       border: 1.5px solid #12D466;
     `
-  }
+}
   ${ResponsiveTo('768px')} {
     font-size: 16px;
   }

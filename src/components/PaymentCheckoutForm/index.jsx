@@ -3,16 +3,34 @@ import { useLocation, useNavigate } from 'react-router-dom'
 // Components
 import Switch from '@/components/Switch'
 // Styles
-import { Section, Container, Form, Title, Input, Error, TotalContainer, Button, ButtonsContainer } from './styles'
+import { Section, Container, Form, Title, Input, Error, TotalContainer, Button, ButtonsContainer, InfoPriceContainer } from './styles'
 // Form
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import getPaymentCheckoutSchema from './schema'
-import options from './currencyOptions'
+
 import StripeButton from '../StripeButton'
+import { getFliksPrice } from '../../services/apiCoinGecko'
+import { useCountLimit } from '../../hooks/useCountLimit'
 
 export default function PaymentCheckoutForm () {
   const location = useLocation()
+  const [options, setOptions] = useState([
+    {
+      name: 'USD',
+      value: 0.09,
+      prefix: '$',
+      min: 100,
+      minTokens: 1112
+    },
+    {
+      name: 'GBP',
+      value: 0.07,
+      prefix: '£',
+      min: 80,
+      minTokens: 1143
+    }
+  ])
   const history = useNavigate()
   const [currency, setCurrency] = useState(options[0])
   const [transactionToken, setTransactionToken] = useState('')
@@ -32,7 +50,40 @@ export default function PaymentCheckoutForm () {
 
   const total = (watchTokenAmount * currency.value).toFixed(2)
 
+  async function handlerGetFliksPrice () {
+    try {
+      const fliksPrice = await getFliksPrice()
+      const usdPrice = fliksPrice.market_data.current_price.usd
+      const gbpprice = fliksPrice.market_data.current_price.gbp
+      if (fliksPrice) {
+        setOptions([
+          {
+            name: 'USD',
+            value: usdPrice,
+            prefix: '$',
+            min: 100,
+            minTokens: 1112
+          },
+          {
+            name: 'GBP',
+            value: gbpprice,
+            prefix: '£',
+            min: 80,
+            minTokens: 1143
+          }
+        ])
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const counterRef = useCountLimit({
+    minsLimit: 3,
+    handlerGetFliksPrice
+  })
   useEffect(() => {
+    handlerGetFliksPrice()
     const params = new URLSearchParams(location.search)
     const q = params.get('token')
     setTransactionToken(q)
@@ -41,6 +92,23 @@ export default function PaymentCheckoutForm () {
   return (
     <Section>
       <Container>
+        <InfoPriceContainer>
+          <section>
+            <div>
+              <p>FLIKS price:</p>
+              <p>
+                USD: {options[0].value}
+              </p>
+              <p>
+                GBP: {options[1].value}
+              </p>
+            </div>
+
+            <small>The price will be updated in <span ref={counterRef} /></small>
+          </section>
+          <a
+            href="https://www.coingecko.com/">Information from <span>CoinGecko</span></a>
+        </InfoPriceContainer>
         <Form noValidate>
           <Switch
             handleSwitch={_handleSwitch}
