@@ -135,7 +135,7 @@ export default function PaymentCheckoutForm () {
           </Button>
         </Form>
         <ButtonsContainer>
-          {total >= currency.min && (
+          {watchTokenAmount >= currency.minTokens && (
             <>
               <div>
                 <StripeButton amount={total} currency={currency.name} token={transactionToken}/>
